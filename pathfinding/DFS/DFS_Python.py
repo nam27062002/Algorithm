@@ -25,7 +25,7 @@ def dfs(matrix, x1, y1, x2, y2):
                 # Kiểm tra xem ô lân cận có hợp lệ và chưa được duyệt
                 if is_valid(matrix, nx, ny) and matrix[nx][ny] == 0:
                     stack.append((nx, ny, path + [(x, y)]))
-
+        
     # Không tìm thấy đường đi từ (x1, y1) đến (x2, y2)
     return None
 

@@ -1,0 +1,19 @@
+======================== Ý tưởng thuật toán =========================
+1. Chọn một đỉnh xuất phát làm đỉnh bắt đầu.
+2. Đánh dấu đỉnh đó là đã được duyệt.
+3. Duyệt qua tất cả các đỉnh kề của đỉnh hiện tại.
+4. Nếu đỉnh kề chưa được duyệt, gọi đệ quy DFS với đỉnh kề đó.
+5. Lặp lại bước 3 và 4 cho tất cả các đỉnh kề chưa được duyệt.
+6. Quay lại đỉnh trước đó và lặp lại bước 3 và 4 cho các đỉnh kề chưa được duyệt của đỉnh đó..
+Thuật toán DFS có thể được triển khai bằng cách sử dụng đệ quy hoặc stack (ngăn xếp). Khi triển khai bằng đệ quy, các bước 3 và 4 được thực hiện bằng cách gọi đệ quy DFS.
+======================== Ưu điểm =========================
+1. Hiệu quả trong tìm kiếm đường đi
+2. Sử dụng ít không gian bộ nhớ
+3. Không bị rơi vào vòng lặp vô tận
+======================== Nhược điểm =========================
+1. Không tìm kiếm đường đi ngắn nhất
+2. Dễ rơi vào vòng lặp vô tận
+3. Không thích hợp cho đồ thị lớn
+======================== Chương trình mô phỏng =========================
+Cài thư viện pygame trước khi chạy chương trình(Nếu chưa có thư viện)
+pip install pygame

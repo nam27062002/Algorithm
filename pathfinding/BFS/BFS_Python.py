@@ -10,23 +10,34 @@ def bfs(matrix, x1, y1, x2, y2):
     cols = len(matrix[0])
     
     visited = [[False] * cols for _ in range(rows)]
+    previous = [[None] * cols for _ in range(rows)]
 
-    queue = deque([(x1, y1)])  # Create a queue and enqueue the starting position
-    visited[x1][y1] = True  # Mark the starting position as visited
+    queue = deque([(x1, y1)])
+    visited[x1][y1] = True
     while queue:
-        x, y = queue.popleft()  # Dequeue a position from the queue
-        if x == x2 and y == y2:  # If we have reached the destination, return True
-            return True
+        x, y = queue.popleft()
+        if x == x2 and y == y2:
+            return True,previous
 
-        dx = [-1, 1, 0, 0]  # Offsets for adjacent positions
+        dx = [-1, 1, 0, 0]
         dy = [0, 0, -1, 1]
         for i in range(4):
             new_x = x + dx[i]
             new_y = y + dy[i]
-            if is_valid(matrix, visited, new_x, new_y):  # Check if the new position is valid
-                queue.append((new_x, new_y))  # Enqueue the new position
-                visited[new_x][new_y] = True  # Mark the new position as visited
-    return False  # If the destination is not reachable, return False
+            if is_valid(matrix, visited, new_x, new_y):
+                queue.append((new_x, new_y))
+                visited[new_x][new_y] = True
+                previous[new_x][new_y] = (x, y)  # Lưu vị trí trước đó
+
+    return False
+
+def reconstruct_path(previous, x1, y1, x2, y2):
+    path = [(x2, y2)]
+    while (x2, y2) != (x1, y1):
+        x2, y2 = previous[x2][y2]
+        path.append((x2, y2))
+    path.reverse()
+    return path
 
 matrix = [
     [0, 0, 0, 0, 0, 0],
@@ -37,8 +48,12 @@ matrix = [
     [0, 0, 0, 0, 1, 0],
     [0, 0, 0, 1, 0, 0]
 ]
-x1, y1 = 0, 0  # Starting position
-x2, y2 = 6, 5  # Destination position
+x1, y1 = 0, 0
+x2, y2 = 6, 5
 
-result = bfs(matrix, x1, y1, x2, y2)  # Call the BFS function
-print(result)  # Print the result
+result = bfs(matrix, x1, y1, x2, y2)
+if result[0]:
+    path = reconstruct_path(result[1], x1, y1, x2, y2)
+    print("Path:", path)
+else:
+    print("No path found.")

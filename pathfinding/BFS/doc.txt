@@ -1,0 +1,27 @@
+======================== Ý tưởng thuật toán =========================
+Để sử dụng thuật toán BFS (Breadth-First Search) để tìm đường đi từ điểm (x1, y1) đến điểm (x2, y2) trên ma trận, bạn có thể áp dụng các bước sau:
+
+1. Định nghĩa một hàng đợi (queue) để lưu các ô cần kiểm tra trong quá trình tìm đường đi. Khởi tạo hàng đợi và thêm điểm ban đầu (x1, y1) vào hàng đợi.
+
+2. Khởi tạo một ma trận visited có cùng kích thước với ma trận ban đầu, để đánh dấu các ô đã được kiểm tra. Ban đầu, tất cả các phần tử trong visited đều có giá trị False.
+
+3. Bắt đầu quá trình duyệt BFS:
+
+    + Trong khi hàng đợi không rỗng:
+    + Lấy phần tử đầu tiên ra khỏi hàng đợi và gán giá trị (x, y) cho nó.
+    + Kiểm tra nếu (x, y) trùng với điểm đích (x2, y2), tức là đã tìm thấy đường đi. Trả về True.
+    + Đánh dấu (x, y) đã được kiểm tra bằng cách đặt visited[x][y] = True.
+    + Kiểm tra các ô kề (trên, dưới, trái, phải) của (x, y) và thêm vào hàng đợi những ô chưa được kiểm tra và có giá trị là 0. Đảm bảo không thêm những ô đã được kiểm tra hoặc có giá trị 1 vào hàng đợi.
+Nếu không tìm thấy đường đi sau khi duyệt toàn bộ ma trận, trả về False.
+
+======================== Ưu điểm =========================
+1. Tìm kiếm đường đi ngắn nhất
+2. Kiểm tra tính liên thông
+3. Không bị rơi vào vòng lặp vô tận
+======================== Nhược điểm =========================
+1. Sử dụng nhiều không gian lưu trữ ( vì dùng hàng đợi và ma trận visited)
+2. Không hiệu quả với đồ thị có trọng số
+3. Không thích hợp cho đồ thị lớn
+======================== Chương trình mô phỏng =========================
+Cài thư viện pygame trước khi chạy chương trình(Nếu chưa có thư viện)
+pip install pygame
